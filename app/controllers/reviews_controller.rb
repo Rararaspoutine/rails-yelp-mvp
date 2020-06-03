@@ -8,17 +8,11 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(reviews_params)
     @review.restaurant = @restaurant
-    if @review.save!
+    if @review.save
       redirect_to restaurant_path(@restaurant), notice: "new review"
     else
       render :new
     end
-  end
-
-  def destroy
-    review = Review.find(params[:id])
-    review.destroy
-    redirect_to restaurant_path(review.restaurant)
   end
 
   private

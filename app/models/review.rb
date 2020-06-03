@@ -1,5 +1,6 @@
 class Review < ApplicationRecord
-  belongs_to :restaurant, foreign_key: true
+  belongs_to :restaurant
   validates :content, :rating, allow_blank: false, presence: true
+  validates :rating, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 5 }
   # 'rating' => 'required|integer|between:0,5'
 end
